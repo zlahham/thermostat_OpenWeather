@@ -1,19 +1,20 @@
 thermostat = new Thermostat();
 
-
 updateTemperature = function() {
   $('.currentTemp').html(thermostat.temp);
   $('.currentTemp').css('color', thermostat.displayColour);
 };
 
-$.getJSON('http://api.openweathermap.org/data/2.5/weather?q=London,uk', function(data) {
- $('#weather-in-london').html(Math.round((data.main.temp)-273.15));
+var city = $('#desired-city').val();
+
+$('#confirm-city-button').click(function() {
+  var city = $('#desired-city').val();
+  $.getJSON(('http://api.openweathermap.org/data/2.5/weather?q=' + city ), function(data) {
+    $('#weather-in-london').html(Math.round((data.main.temp)-273.15));
+  });
 });
 
-// http://api.openweathermap.org/data/2.5/forecast/city?id=524901&APPID={APIKEY}
-
-  updateTemperature();
-
+updateTemperature();
 
 $('#increaseTemp').click(function() {
   thermostat.increaseTemperature();
@@ -34,4 +35,3 @@ $('#powerSave').change(function() {
   thermostat.setPowerSave();
   updateTemperature();
 });
-
