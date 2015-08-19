@@ -2,9 +2,15 @@ thermostat = new Thermostat();
 
 
 updateTemperature = function() {
-  $('#currentTemp').html(thermostat.temp);
-  $('#currentTemp').css('color', thermostat.displayColour);
+  $('.currentTemp').html(thermostat.temp);
+  $('.currentTemp').css('color', thermostat.displayColour);
 };
+
+$.getJSON('http://api.openweathermap.org/data/2.5/weather?q=London,uk', function(data) {
+ $('#weather-in-london').html(Math.round((data.main.temp)-273.15));
+});
+
+// http://api.openweathermap.org/data/2.5/forecast/city?id=524901&APPID={APIKEY}
 
   updateTemperature();
 
@@ -28,9 +34,4 @@ $('#powerSave').change(function() {
   thermostat.setPowerSave();
   updateTemperature();
 });
-
-
-class_name.prototype.method_name = function(first_argument) {
-  // body...
-};
 
