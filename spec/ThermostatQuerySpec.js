@@ -14,7 +14,7 @@ describe('Thermostat',function(){
     expect('#currentTemp').toContainText('20')
   });
 
-  it('increases by one', function() {
+  xit('increases by one', function() {
 
   });
 
